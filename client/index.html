@@ -25,6 +25,10 @@
         var library = new Songs(songData);
         var app = new AppModel({library: library});
 
+        app.get('library').at(0).enqueue();
+        app.get('library').at(2).enqueue();
+
+
         // build a view for the top level of the whole app
         var appView = new AppView({model: app});
 

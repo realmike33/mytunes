@@ -2,21 +2,34 @@
 var SongQueue = Songs.extend({
 
   initialize: function(){
-    this.counter = 0;
+
+    this.on('add', function(){
+      if (this.length <= 1) {
+        this.playFirst();
+      }
+    }, this);
+
+    this.on('ended', function(){
+     this.remove(this.at(0));
+     if(this.length > 0){
+      this.playFirst();
+     }
+    }, this);
+
+    this.on('dequeue', function() {
+      this.remove(this.at(0));
+    })
+
+
+
 
   },
 
+
   playFirst: function() {
-    if (this.counter < 1) {
-      console.log(this);
-      this.at(0).play();
-    }
+    this.at(0).play();
+  },
 
-  }
-  // change currentSong to nextSong when currenSong ends.  This should fire an event and autoplay next one
 
-  // enqueue: function() {
-
-  // }
 
 });

@@ -6,7 +6,13 @@ var PlayerView = Backbone.View.extend({
   el: '<audio controls autoplay />',
 
   initialize: function() {
-    // this.$el.
+    // console.log(this.$el);
+
+    // This is jQuery, so you don't put ', this' at the end.  this relates to the DOM event system.
+    this.$el.on('ended', function() {
+      // console.log('Hey, I ended', this);
+
+    });
   },
 
   setSong: function(song){

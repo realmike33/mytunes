@@ -16,11 +16,12 @@ var AppModel = Backbone.Model.extend({
 
     params.library.on('play', function(song){
       this.set('currentSong', song);
+      // console.log('AppModel - Playing: ' + song.attributes.title);
     }, this);
 
     params.library.on('enqueue', function(song){
       this.get('songQueue').push(song);
-      this.get('songQueue').counter++;
+      // console.log('AppModel - In the queue: ' + song.attributes.title);
     }, this);
 
     params.library.on('dequeue', function(song){
@@ -29,7 +30,7 @@ var AppModel = Backbone.Model.extend({
     }, this);
 
     params.library.on('ended', function(e){
-      console.log('Im paused', e);
+      // console.log("I'm paused", e);
     }, this);
   }
 
